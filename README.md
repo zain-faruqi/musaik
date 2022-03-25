@@ -2,8 +2,6 @@
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project_)
-
 Musaic is a web app that allows users to share their favorite artists, playlists, and album with their friends. Users link their Musaic profile to their Spotify account, and select which media they want to feature. A user's profile page shows their selected favorites, 6 month's trailing listening minutes, and last played song.
 
 
