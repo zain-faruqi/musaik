@@ -1,16 +1,11 @@
-The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
-
-(__TODO__: your project name_)
-
-# Shoppy Shoperson 
+# Musaic
 
 ## Overview
 
 (__TODO__: a brief one or two paragraph, high-level description of your project_)
 
-Remembering what to buy at the grocery store is waaaaay too difficult. Also, shopping for groceries when you're hungry leads to regrettable purchases. Sooo... that's where Shoppy Shoperson comes in!
+Musaic is a web app that allows users to share their favorite artists, playlists, and album with their friends. Users link their Musaic profile to their Spotify account, and select which media they want to feature. A user's profile page shows their selected favorites, 6 month's trailing listening minutes, and last played song.
 
-Shoppy Shoperson is a web app that will allow users to keep track of multiple grocery lists. Users can register and login. Once they're logged in, they can create or view their grocery list. For every list that they have, they can add items to the list or cross off items.
 
 
 ## Data Model
