@@ -5,39 +5,34 @@
 Musaic is a web app that allows users to share their favorite artists, playlists, and album with their friends. Users link their Musaic profile to their Spotify account, and select which media they want to feature. A user's profile page shows their selected favorites, 6 month's trailing listening minutes, and last played song.
 
 
-
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other_) 
 
-The application will store Users, Lists and Items
+The application will store Users, Pinned Items
 
-* users can have multiple lists (via references)
-* each list can have multiple items (by embedding)
+* users will have pinned items for three categories: Albums, Playlists, Songs
 
-(__TODO__: sample documents_)
 
 An Example User:
 
 ```javascript
 {
-  username: "shannonshopper",
+  username: "musicfan67",
   hash: // a password hash,
-  lists: // an array of references to List documents
+  pins: // an array of references to each pin category
 }
 ```
 
-An Example List with Embedded Items:
+An Example Pin Category with Embedded Items:
 
 ```javascript
 {
   user: // a reference to a User object
-  name: "Breakfast foods",
+  name: "Albums",
   items: [
-    { name: "pancakes", quantity: "9876", checked: false},
-    { name: "ramen", quantity: "2", checked: true},
+    { title: "The Wall", artist: "Pink Floyd" image: "TheWall.img"},
+    { title: "Bon Voyage", artist: "Melody's Echo Chamber" image: "BonVoyage.img"},
   ],
-  createdAt: // timestamp
 }
 ```
 
@@ -48,25 +43,8 @@ An Example List with Embedded Items:
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
+https://www.figma.com/file/ZsEO5JReVMwngIY4g2uV3b/Musaic-Web?node-id=0%3A1
 
-/list/create - page for creating a new shopping list
-
-![list create](documentation/list-create.png)
-
-/list - page for showing all shopping lists
-
-![list](documentation/list.png)
-
-/list/slug - page for showing specific shopping list
-
-![list](documentation/list-slug.png)
-
-## Site map
-
-(__TODO__: draw out a site map that shows how pages are related to each other_)
-
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
 
 ## User Stories or Use Cases
 
@@ -74,10 +52,8 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 1. as non-registered user, I can register a new account with the site
 2. as a user, I can log in to the site
-3. as a user, I can create a new grocery list
-4. as a user, I can view all of the grocery lists I've created in a single list
-5. as a user, I can add items to an existing grocery list
-6. as a user, I can cross off items in an existing grocery list
+3. as a user, I can add my pin my favorite albums, playlists, songs from my Spotify account
+4. as a user, I can view my friends' profiles
 
 ## Research Topics
 
@@ -85,16 +61,14 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 * (5 points) Integrate user authentication
     * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (2 points) Spotify Web API and Playback SDK
+    *  All songs, playlists, albums are linked from the users' Spotify account using Spotify Web API
+    *  Authenticated Users can play songs from within the app using the Spotify Playback SDK
+* (5 points) React.js
+    * I'm using React.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+
+12 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
 
 
 ## [Link to Initial Main Project File](app.js) 
@@ -103,8 +77,5 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of_)
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
 
