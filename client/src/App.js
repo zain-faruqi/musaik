@@ -4,7 +4,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 
 function App() {
-  const user = localStorage.getItem("token");
+  const user = localStorage.getItem('user');
   console.log(user);
   return (
     <Routes>

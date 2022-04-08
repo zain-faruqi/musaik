@@ -36,17 +36,12 @@ const Signup = () => {
         }
     }
     return (
-        <div className={styles.signup_container}>
-            <div className={styles.signup_form_container}>
-                <div className={styles.left}>
-                    <h1>Welcome Back</h1>
-                    <Link to="/login">
-                        <button type='button' className={styles.white_btn}>Sign in</button>
-                    </Link>
-                </div>
-                <div className={styles.right}>
-                    <form className={styles.signup_form} onSubmit={handleSubmit}>
-                        <h1>Create Account</h1>
+        <div className={styles.container}>
+            <img src={"./musaiclogo.svg"} />
+            <div className={styles.signup_container}>
+                <div className={styles.top}>
+                    <form onSubmit={handleSubmit}>
+                        <h2>Create Account</h2>
                         <input
                             type="text"
                             placeholder="username"
@@ -66,7 +61,7 @@ const Signup = () => {
                             className={styles.input}
                         />
                         <input
-                            type="password"
+                            type="text"
                             placeholder="password"
                             name="password"
                             onChange={handleChange}
@@ -75,8 +70,13 @@ const Signup = () => {
                             className={styles.input}
                         />
                         {error && <div className={styles.error_msg}>{error}</div>}
-                        <button type='submit' className={styles.green_btn}>Sign up</button>
+                        <button type='submit'>Sign up</button>
                     </form>
+                </div>
+                <div className={styles.bottom}>
+                    <Link to="/login">
+                        <button type='button' className={styles.login}>log in</button>
+                    </Link>
                 </div>
             </div>
         </div>

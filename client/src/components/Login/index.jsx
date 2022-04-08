@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
 
@@ -23,7 +23,8 @@ const Login = () => {
         try {
             const url = 'http://localhost:8080/api/auth';
             const { user: res } = await axios.post(url, user);
-            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', user['token']);
+            console.log(localStorage.getItem('user'));
             window.location = '/';
         } catch (error) {
             if (error.response &&
@@ -34,12 +35,14 @@ const Login = () => {
             }
         }
     }
+
     return (
-        <div className={styles.login_container}>
-            <div className={styles.login_form_container}>
-                <div className={styles.left}>
-                   <form className={styles.login_form} onSubmit={handleSubmit}>
-                        <h1>Log in</h1>
+        <div className={styles.container}>
+            <img src={"./musaiclogo.svg"} />
+            <div className={styles.login_container}>
+                <div className={styles.top}>
+                   <form onSubmit={handleSubmit}>
+                        <h2>Log in</h2>
                         <input
                             type="text"
                             placeholder="username"
@@ -50,7 +53,7 @@ const Login = () => {
                             className={styles.input}
                         />
                         <input
-                            type="password"
+                            type="text"
                             placeholder="password"
                             name="password"
                             onChange={handleChange}
@@ -59,13 +62,12 @@ const Login = () => {
                             className={styles.input}
                         />
                         {error && <div className={styles.error_msg}>{error}</div>}
-                        <button type='submit' className={styles.green_btn}>Sign in</button>
+                        <button type='submit'>Sign in</button>
                     </form>
                 </div>
-                <div className={styles.right}>
-                     <h1>New?</h1>
+                <div className={styles.bottom}>
                     <Link to="/signup">
-                        <button type='button' className={styles.white_btn}>Sign up</button>
+                        <button type='button' className={styles.signup}>Sign up</button>
                     </Link>
                     
                 </div>
