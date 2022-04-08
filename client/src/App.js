@@ -1,11 +1,10 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Main from './components/Main';
+import Main from './components/Profile';
 import Signup from './components/Signup';
 import Login from './components/Login';
 
 function App() {
   const user = localStorage.getItem('user');
-  console.log(user);
   return (
     <Routes>
       {user && <Route path="/" exact element={<Main/>} />}

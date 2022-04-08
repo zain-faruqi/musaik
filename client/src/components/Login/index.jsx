@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import styles from './styles.module.css';
 
@@ -22,9 +22,8 @@ const Login = () => {
         e.preventDefault();
         try {
             const url = 'http://localhost:8080/api/auth';
-            const { user: res } = await axios.post(url, user);
-            localStorage.setItem('user', user['token']);
-            console.log(localStorage.getItem('user'));
+            await axios.post(url, user);
+            localStorage.setItem('user', JSON.stringify(user));
             window.location = '/';
         } catch (error) {
             if (error.response &&

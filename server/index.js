@@ -5,6 +5,7 @@ const cors = require('cors');
 const dbConnection = require('./db');
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
+const searchRoute = require('./routes/search');
 
 //database connection
 dbConnection();
@@ -16,6 +17,7 @@ app.use(cors());
 //routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/search', searchRoute);
 
 app.get('/', (req, res) => {
     res.send('Hello World');
