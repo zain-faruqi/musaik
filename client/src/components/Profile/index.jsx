@@ -16,7 +16,7 @@ const Profile = () => {
     const searchForUser = (e) => {
         e.preventDefault();
         try {
-            const url = 'http://localhost:8080/api/search';
+            const user = 'http://localhost:8080/api/search';
             localStorage.setItem('user', JSON.stringify(user));
         } catch (error) {
             if (error.response &&

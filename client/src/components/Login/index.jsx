@@ -17,7 +17,7 @@ const Login = () => {
             [input.name]: input.value,
         });
     }
-
+/*
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -34,6 +34,35 @@ const Login = () => {
             }
         }
     }
+*/
+    const handleSubmit = async (e) => {
+                e.preventDefault();
+                try {
+                    const res = await fetch('/api/auth', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(user),
+                    });
+                    const data = await res.json();
+                    if (data.token) {
+                        localStorage.setItem('user', JSON.stringify(data.token));
+                        window.location = '/';
+                    } else {
+                        setError(data.message);
+                    }
+                } catch (error) {
+                    if (error.response &&
+                        error.response.status >= 400 &&
+                        error.response.status < 500
+                    ) { 
+                        setError(error.response.data.message);
+                    }
+                }
+         };
+    
+    
 
     return (
         <div className={styles.container}>

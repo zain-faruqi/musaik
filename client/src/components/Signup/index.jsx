@@ -18,7 +18,7 @@ const Signup = () => {
             [input.name]: input.value,
         });
     }
-
+/*
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -35,6 +35,32 @@ const Signup = () => {
             }
         }
     }
+*/
+    const handleSubmit = async (e) => {
+                e.preventDefault();
+                try {
+                    const res = await fetch('/api/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(user),
+                    });
+                    const data = await res.json();
+                    if (data.message === 'User created.') {
+                        navigate('/login');
+                    } else {
+                        setError(data.message);
+                    }
+                } catch (error) {
+                    if (error.response &&
+                        error.response.status >= 400 &&
+                        error.response.status < 500
+                    ) { 
+                        setError(error.response.data.message);
+                    }
+                }
+         };
     return (
         <div className={styles.container}>
             <img src={"./musaiclogo.svg"} />
