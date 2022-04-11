@@ -18,24 +18,7 @@ const Signup = () => {
             [input.name]: input.value,
         });
     }
-/*
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const url = 'http://localhost:8080/api/users';
-            const { user: res } = await axios.post(url, user);
-            navigate('/login');
-            console.log(res.message);
-        } catch (error) {
-            if (error.response &&
-                error.response.status >= 400 &&
-                error.response.status < 500
-            ) {
-                setError(error.response.data.message);
-            }
-        }
-    }
-*/
+
     const handleSubmit = async (e) => {
                 e.preventDefault();
                 try {

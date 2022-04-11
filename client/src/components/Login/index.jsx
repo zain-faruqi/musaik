@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import styles from './styles.module.css';
 
 const Login = () => {
@@ -17,24 +16,7 @@ const Login = () => {
             [input.name]: input.value,
         });
     }
-/*
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const url = 'http://localhost:8080/api/auth';
-            await axios.post(url, user);
-            localStorage.setItem('user', JSON.stringify(user));
-            window.location = '/';
-        } catch (error) {
-            if (error.response &&
-                error.response.status >= 400 &&
-                error.response.status < 500
-            ) {
-                setError(error.response.data.message);
-            }
-        }
-    }
-*/
+
     const handleSubmit = async (e) => {
                 e.preventDefault();
                 try {
@@ -47,7 +29,7 @@ const Login = () => {
                     });
                     const data = await res.json();
                     if (data.token) {
-                        localStorage.setItem('user', JSON.stringify(data.token));
+                        localStorage.setItem('user', data.token);
                         window.location = '/';
                     } else {
                         setError(data.message);

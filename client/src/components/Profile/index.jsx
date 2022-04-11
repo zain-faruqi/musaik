@@ -9,26 +9,53 @@ const Profile = () => {
 
     const [user, setUser] = useState({
         username: '',
-        pins: [],
+        pins:[],
     });
+
+    const [searchUser, setSearchUser] = useState({
+        username: '',
+    });
+
     const [error, setError] = useState('');
 
-    const searchForUser = (e) => {
-        e.preventDefault();
-        try {
-            const user = 'http://localhost:8080/api/search';
-            localStorage.setItem('user', JSON.stringify(user));
-        } catch (error) {
-            if (error.response &&
-                error.response.status >= 400 &&
-                error.response.status < 500
-            ) {
-                setError(error.response.data.message);
-            }
-        }
+    const handleChange = ({ currentTarget: input }) => {
+        setSearchUser({
+            username: input.value,
+        });
+    }
+    
+    const searchForUser = async (e) => {
+                e.preventDefault();
+                try {
+                    const res = await fetch('/api/search', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(searchUser),
+                    });
+                    const data = await res.json();
+                    console.log(JSON.stringify(data));
+                    if (data.username && data.pins) {
+                        setUser({
+                            username: data.username,
+                            pins: data.pins,
+                        });
+                        console.log("genius");
+                    } else {
+                        setError(data.message);
+                    }
+                } catch (error) {
+                    if (error.response &&
+                        error.response.status >= 400 &&
+                        error.response.status < 500
+                    ) { 
+                        setError(error.response.data.message);
+                        console.log(error);
+                    }
+                }
     };
-
-
+    
     return (
         <div className={styles.main_container}>
             <nav className={styles.navbar}>
@@ -36,19 +63,23 @@ const Profile = () => {
                 <form class={styles.search} onSubmit={searchForUser}>
                     <input
                         type="text"
-                        placeholder="Search"
-                        class={styles.input}
+                        placeholder="search"
                         name="username"
+                        onChange={handleChange}
+                        value={searchUser.username}
+                        required
+                        class={styles.input}
                     />
-                    <button type ="submit" >Search</button>
+                    {error && <div className={styles.error_msg}>{error}</div>}
+                    <button type='submit'>Search</button>
                 </form>
                 <button className={styles.logout} onClick={handleLogout}>
                     logout
                 </button>
             </nav>
             <div>
-                <h1>{user.username}</h1>
-                <h2>{user.pins.length} pins</h2>
+                <h2>{user.username}</h2>
+                <h3>{user.pins.length} pins</h3>
             </div>
         </div>
     );

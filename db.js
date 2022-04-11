@@ -6,7 +6,7 @@ module.exports = () => {
         useUnifiedTopology: true,
     };
     try {
-        mongoose.connect(process.env.DB, connectionParams);
+        mongoose.connect(process.env.DB_URI, connectionParams);
         console.log('Connected to DB');
     } catch (error) {
         console.log('Error connecting to DB');
