@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    min-height: 100vh;
+    height: 80vh;
     background-color: black;
     display: flex;
     flex-direction: column;
@@ -10,25 +10,16 @@
 
 .login_container {
     border: 1px solid white;
-    margin-top: 10px;
     width: 50%;
-    height: 45vh;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     outline: 1px solid #6200ee;
     outline-offset: -10px;
+    align-items: center;
     
 }
 
-.top {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #0a0a0a;
-    
-}
 
 
 
@@ -63,38 +54,7 @@ form{
     text-align: center;
 }
 
-.bottom {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #0a0a0a;
-}
 
-
-button{
-    border: none;
-    outline: 1px solid #6200ee;
-    color:#dddddd;
-    padding: 5px;
-    background-color: inherit;
-    width: 80px;
-    font-size: 14px;
-    margin: 5px;
-}
-
-button:hover{
-    cursor: pointer;
-    background-color: #6200ee;
-    color: white;
-}
-
-.signup {
-    font-size: 10px;
-    padding: 3px;
-    width: 60px;
-}
 
 img{
     width: 100px;
@@ -110,4 +70,35 @@ h2 {
     color: white;
     font-size: 20px;
     margin-left: 20px;
+}
+.spotifyContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+    background: black;
+    position: relative;
+    color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 10px;
+} 
+
+.spotifyContainer:hover{
+    background: #6200ee;
+}
+
+.spotifyContainer:active {
+    background: #6200ee;
+}
+
+.spotifyContainer img {
+    width: 12.5%;
+    height: 100%;
+    object-fit: contain;
+    left: 10px;
+    border-radius: 3px;
+    position: absolute;
 }

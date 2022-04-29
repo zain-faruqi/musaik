@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const { User } = require('../models/user');
+const User = require('../models/user');
 
 router.post('/', async (req, res) => {
     try {
-        const user = await User.findOne({username: req.body.username});
+        const user = await User.findOne({ display_name: req.body.username });
         if (user) {
             res.status(200).send(JSON.stringify(user));
         } else {

@@ -38,11 +38,137 @@
 
 .error_msg {
     width: 30%;
-    padding: 15px;
+    padding: 5px;
     margin: 5px 0;
+    height: 100%;
     font-size: 14px;
     background-color: #f34646;
     color: white;
     border-radius: 5px;
     text-align: center;
 }
+
+button {
+    border: none;
+    outline: 1px solid #6200ee;
+    color: #dddddd;
+    padding: 5px;
+    background-color: inherit;
+    width: 80px;
+    font-size: 14px;
+    margin: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #6200ee;
+    color: white;
+}
+
+h1:hover{
+    cursor: pointer;    
+}
+
+.profile_container{
+    width: 100%;
+    height: 75vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_sub{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  
+}
+
+.username{
+    text-align: center;
+    margin: 20px;
+    color: white;
+}
+
+.sub_container{
+    margin: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.profile_pic > img{
+    width: 20vw;
+    border-radius: 10em;
+    margin: 20px;
+}
+
+.icon_frame_left{
+    margin-right: -25%;
+    z-index: 1;
+    width: 35%;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 100%;
+    background-color: #6200ee;
+    outline: 1px solid black;
+    outline-offset: -4px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon_frame_right{
+    margin-left: -25%;
+    z-index: 1;
+    width: 35%;
+    min-height: 50px;
+    min-width: 50px;
+    border-radius: 100%;
+    background-color: #6200ee;
+    outline: 1px solid black;
+    outline-offset: -4px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon_frame_right > img{
+    width: 100%;
+}
+
+.icon_frame_left>img {
+    width: 100%;
+}
+
+.text_container{
+    color: white;
+    font-weight: bold;
+    background-color: #6200ee;
+    outline: 1px solid black;
+    outline-offset: -4px;
+    border-radius: 80px;
+    height: 20%;
+    width: 100%;
+    min-width: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    align-items: center;
+    font-size: 2vw;
+    
+}
+
+
+

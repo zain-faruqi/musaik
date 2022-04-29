@@ -1,15 +1,22 @@
 import styles from './styles.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import person  from './person.svg';
+import globe from './globe.svg';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 const Profile = () => {
 
+    const navigate = useNavigate();
     const handleLogout = () => {
-        localStorage.removeItem('user');
-        window.location.reload();
+        navigate('/login');
     };
 
     const [user, setUser] = useState({
         username: '',
-        pins:[],
+        followers: '',
+        image_url: '',
+        country: '',
     });
 
     const [searchUser, setSearchUser] = useState({
@@ -24,6 +31,15 @@ const Profile = () => {
         });
     }
     
+    const userHome = () => {
+        setUser({
+            username: userObject.display_name,
+            followers: userObject.followers,
+            image_url: userObject.image_url,
+            country: userObject.country,
+        });
+    }
+
     const searchForUser = async (e) => {
                 e.preventDefault();
                 try {
@@ -35,31 +51,54 @@ const Profile = () => {
                         body: JSON.stringify(searchUser),
                     });
                     const data = await res.json();
-                    console.log(JSON.stringify(data));
-                    if (data.username && data.pins) {
+                    if (data.display_name) {
                         setUser({
-                            username: data.username,
-                            pins: data.pins,
+                            username: data.display_name,
+                            followers: data.followers,
+                            image_url: data.image_url,
+                            country: data.country
                         });
-                        console.log("genius");
                     } else {
-                        setError(data.message);
+                        setError("user not found");
                     }
                 } catch (error) {
                     if (error.response &&
                         error.response.status >= 400 &&
                         error.response.status < 500
                     ) { 
-                        setError(error.response.data.message);
+                        setError("User not found");
                         console.log(error);
                     }
                 }
     };
     
+    const [userObject, setUserObject] = useState({});
+    
+    useEffect(() => {
+        axios.get('/getuser', { withCredentials: true }).then((res) => {
+            setUserObject(res.data);
+        }
+        )
+    }, []);
+
+
+
+    useEffect(() => {
+        if (userObject.display_name) {
+            setUser({
+                username: userObject.display_name,
+                followers: userObject.followers,
+                image_url: userObject.image_url,
+                country: userObject.country,
+            });
+        }
+        console.log(userObject);
+    }, [userObject]);
+   
     return (
         <div className={styles.main_container}>
             <nav className={styles.navbar}>
-                <h1>musaic</h1>
+                <h1 onClick={userHome}>musaik</h1>
                 <form class={styles.search} onSubmit={searchForUser}>
                     <input
                         type="text"
@@ -77,9 +116,22 @@ const Profile = () => {
                     logout
                 </button>
             </nav>
-            <div>
-                <h2>{user.username}</h2>
-                <h3>{user.pins.length} pins</h3>
+            
+            <div className={styles.profile_container}>
+            <h1 className={styles.username}>{user.username}</h1>
+                <div className={styles.profile_sub}>
+                    <div className={styles.sub_container}>
+                        <div className={styles.icon_frame_left}><img src={person} alt="globe"/></div>
+                        <div className={styles.text_container}>{user.followers} <br/>followers</div>
+                    </div>
+                <div className={styles.profile_pic}>
+                    <img src={user.image_url} alt="profile" />
+                </div>
+                <div className={styles.sub_container}>
+                    <div className={styles.text_container}>{user.country}</div>
+                    <div className={styles.icon_frame_right}><img src={globe} alt="globe"/></div>
+                </div>
+            </div>
             </div>
         </div>
     );
