@@ -9,7 +9,6 @@ const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
 const session = require('express-session');
 const User = require('./models/user');
-const req = require('express/lib/request');
 
 //database connection
 dbConnection();
@@ -42,12 +41,11 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'https://sheltered-cliffs-52169.herokuapp.com/auth/spotify/callback'
+      callbackURL: process.env.CALLBACK_URI + '/auth/spotify/callback'
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
       // asynchronous verification, for effect...
-        process.nextTick(() => {
-            
+        process.nextTick( () => {
         User.findOne({ display_name: profile.displayName }, async (err, user) => {
           if (err) {
             console.log(err);
@@ -59,7 +57,7 @@ passport.use(
             console.log('user not found');
             const newUser = new User({
               display_name: profile.displayName,
-              profileURL: profile.profileUrl,
+              profileURL: profile.profileURL,
               image_url: profile.photos[0].value,
               followers: profile.followers,
               country: profile.country,
@@ -95,7 +93,7 @@ app.get(
 app.get(
   '/auth/spotify/callback',
   passport.authenticate('spotify', { failureRedirect: '/login' }),
-  function(req, res) {
+  function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('/profile');
   }
