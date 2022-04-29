@@ -42,7 +42,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: 'http://localhost:8080/auth/spotify/callback'
+      callbackURL: 'https://sheltered-cliffs-52169.herokuapp.com/auth/spotify/callback'
     },
     function (accessToken, refreshToken, expires_in, profile, done) {
       // asynchronous verification, for effect...
