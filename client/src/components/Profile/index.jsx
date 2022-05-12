@@ -9,10 +9,12 @@ const Profile = () => {
 
     const navigate = useNavigate();
     const handleLogout = () => {
-        navigate('/login');
+        axios.get('/logout', { withCredentials: true }).then(res => {
+            navigate('/login');
+        })
     };
 
-    const [user, setUser] = useState({
+    const [displayUser, setDisplayUser] = useState({
         username: '',
         followers: '',
         image_url: '',
@@ -32,11 +34,11 @@ const Profile = () => {
     }
     
     const userHome = () => {
-        setUser({
-            username: userObject.display_name,
-            followers: userObject.followers,
-            image_url: userObject.image_url,
-            country: userObject.country,
+        setDisplayUser({
+            username: user.display_name,
+            followers: user.followers,
+            image_url: user.image_url,
+            country: user.country,
         });
     }
 
@@ -52,7 +54,7 @@ const Profile = () => {
                     });
                     const data = await res.json();
                     if (data.display_name) {
-                        setUser({
+                        setDisplayUser({
                             username: data.display_name,
                             followers: data.followers,
                             image_url: data.image_url,
@@ -72,29 +74,27 @@ const Profile = () => {
                 }
     };
     
-    const [userObject, setUserObject] = useState({});
+    const [user, setUser] = useState({});
     
     useEffect(() => {
         axios.get('/getuser', { withCredentials: true }).then((res) => {
-            setUserObject(res.data);
+            setUser(res.data);
         }
         )
     }, []);
 
-
-
     useEffect(() => {
-        if (userObject.display_name) {
-            setUser({
-                username: userObject.display_name,
-                followers: userObject.followers,
-                image_url: userObject.image_url,
-                country: userObject.country,
+        if (user.display_name) {
+            setDisplayUser({
+                username: user.display_name,
+                followers: user.followers,
+                image_url: user.image_url,
+                country: user.country,
             });
         }
-        console.log(userObject);
-    }, [userObject]);
-   
+    }, [user]);
+
+    
     return (
         <div className={styles.main_container}>
             <nav className={styles.navbar}>
@@ -118,17 +118,17 @@ const Profile = () => {
             </nav>
             
             <div className={styles.profile_container}>
-            <h1 className={styles.username}>{user.username}</h1>
+            <h1 className={styles.username}>{displayUser.username}</h1>
                 <div className={styles.profile_sub}>
                     <div className={styles.sub_container}>
                         <div className={styles.icon_frame_left}><img src={person} alt="globe"/></div>
-                        <div className={styles.text_container}>{user.followers} <br/>followers</div>
+                        <div className={styles.text_container}>{displayUser.followers} followers</div>
                     </div>
                 <div className={styles.profile_pic}>
-                    <img src={user.image_url} alt="profile" />
+                    <img src={displayUser.image_url} alt="profile" />
                 </div>
                 <div className={styles.sub_container}>
-                    <div className={styles.text_container}>{user.country}</div>
+                    <div className={styles.text_container}>{displayUser.country}</div>
                     <div className={styles.icon_frame_right}><img src={globe} alt="globe"/></div>
                 </div>
             </div>
