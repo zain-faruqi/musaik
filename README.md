@@ -3,7 +3,7 @@
 
 ## Overview
 
-musail is a web app that allows users to share their streaming favorites and connect with friends. Users link their musaik profile to their Spotify account, and select which media they want to feature. A user can be paired with another user with similar preferences in a direct message chat. A user's profile page shows their selected favorites, 6 month's trailing listening minutes, and last played song.
+musaik is a web app that allows users to share their streaming favorites and connect with friends. Users link their musaik profile to their Spotify account, and select which media they want to feature. A user can be paired with another user with similar preferences in a direct message chat. A user's profile page shows their selected favorites, 6 month's trailing listening minutes, and last played song.
 
 
 ## Wireframe
